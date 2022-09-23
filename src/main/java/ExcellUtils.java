@@ -39,11 +39,11 @@ public class ExcellUtils {
         }
     }
 
-    public void writeNumsInExcell(String file) throws FileNotFoundException, IOException{
+    public void writeNumsInExcell(String file) throws FileNotFoundException, IOException {
         HSSFWorkbook excellBook = new HSSFWorkbook();
         HSSFSheet excellSheet = excellBook.createSheet("Numbers");
 
-        for(int i = 0; i < numbers.size(); i++){
+        for (int i = 0; i < numbers.size(); i++) {
             Row row = excellSheet.createRow(i);
             Cell number = row.createCell(0);
             number.setCellValue(numbers.get(i));
