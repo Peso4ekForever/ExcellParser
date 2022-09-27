@@ -17,23 +17,15 @@ public class ExcellUtils {
         HSSFWorkbook excellBook = new HSSFWorkbook(new FileInputStream(file));
         HSSFSheet excellSheet = excellBook.getSheetAt(0);
 
+
         for (Row row : excellSheet) {
             for (Cell cell : row) {
-                System.out.println("!");
                 try {
-                    if (cell.getStringCellValue().contains("+7") | cell.getStringCellValue().matches("8(.*)")) {
-                        if (cell.getStringCellValue().length() == 12) {
-                            String localNumber = cell.getStringCellValue().replace("+", "");
-                            if (localNumber.matches("[0-9]+")) {
-                                numbers.add(cell.getStringCellValue());
-                                System.out.println(cell.getStringCellValue());
-                            }
-                        } else if (cell.getStringCellValue().length() == 11 & cell.getStringCellValue().matches("[0-9]+")) {
-                            numbers.add(cell.getStringCellValue());
-                            System.out.println(cell.getStringCellValue());
-                        }
+                    if (cell.getStringCellValue().matches("^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$")) {
+                        numbers.add(cell.getStringCellValue());
                     }
                 } catch (Exception e) {
+                    System.out.println(e);
                 }
             }
         }
